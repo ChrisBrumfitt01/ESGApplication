@@ -47,3 +47,6 @@ One problem I noticed whilst writing this: if a line failed to process, an excep
 I made a change to this to handle invalid lines. So if the program reaches an invalid line, it will log a message and then continue processing the rest of the file.
 
 
+#### Third commit 
+
+Fixed errors not spotted earlier, caused by missing configuration for RestTemplate.

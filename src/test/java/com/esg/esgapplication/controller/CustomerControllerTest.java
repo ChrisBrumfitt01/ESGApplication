@@ -31,7 +31,7 @@ public class CustomerControllerTest {
 
   @Test
   @DisplayName("When a POST is sent to /customer then a custoner is persisted")
-  void hotelCreatedCorrectly() throws Exception {
+  void customerCreatedCorrectly() throws Exception {
     Customer customer = createCustomer();
 
     mockMvc.perform(
