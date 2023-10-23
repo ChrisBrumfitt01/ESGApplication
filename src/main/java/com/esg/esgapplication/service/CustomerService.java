@@ -6,4 +6,6 @@ public interface CustomerService {
 
   Customer createCustomer(Customer customer);
 
+  Customer getCustomer(String customerRef);
+
 }
