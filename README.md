@@ -30,3 +30,4 @@ Where possible, a Test-Driven Development (TDD) approach should be taken.
 
 I have created this as a Spring boot application.
 
+- First, I have been thinking about the CSV reader which will need to parse a CSV file and then send the rows to a POST endpoint. So working backwards, I have created the POST endpoint first with a service and repository behind it. Created an integration test using MockMVC and a H2 database to test the creation of a Customer.
