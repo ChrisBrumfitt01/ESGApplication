@@ -50,3 +50,7 @@ I made a change to this to handle invalid lines. So if the program reaches an in
 #### Third commit 
 
 Fixed errors not spotted earlier, caused by missing configuration for RestTemplate.
+
+#### Fourth commit 
+
+Implemented the GET endpoint for retrieving a customer. Used a global exception handler because I think it is a cleaner way to handle non-2xx errors.
