@@ -11,3 +11,7 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+csv-processor:
+  timeout: 60000
+  thread-count: 4
