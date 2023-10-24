@@ -1,0 +1,3 @@
+csv-processor:
+  timeout: 60000
+  thread-count: 4

@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class HttpClient {
 
-  private static final String URL = "localhost:8080/customer";
+  private static final String URL = "http://localhost:8080/customer";
 
   private final RestTemplate restTemplate;
 

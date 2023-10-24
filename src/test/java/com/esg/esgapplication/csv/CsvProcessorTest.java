@@ -7,10 +7,12 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
+import com.esg.esgapplication.config.CsvProcessorConfig;
 import com.esg.esgapplication.csv.model.CustomerCsvBean;
 import com.esg.esgapplication.exception.CsvProcessingException;
 import com.esg.esgapplication.http.HttpClient;
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -26,6 +28,7 @@ public class CsvProcessorTest {
   private static final String CSV_INVALID_LINES = "src/test/resources/customers_with_invalid_lines.csv";
 
   @Mock private HttpClient httpClient;
+  @Mock private CsvProcessorConfig config;
 
   @Captor
   private ArgumentCaptor<CustomerCsvBean> captor;
@@ -33,8 +36,14 @@ public class CsvProcessorTest {
   @InjectMocks
   private CsvProcessor csvProcessor;
 
+  @BeforeEach
+  public void beforeEach() {
+    when(config.getThreadCount()).thenReturn(60000);
+  }
+
   @Test
   public void process_withValidCsv_shouldReturnNumberOfLinesProcessed_andSendEachToHttpClient() {
+    when(config.getTimeout()).thenReturn(60000);
     when(httpClient.createCustomer(any())).thenReturn(true);
     int linesProcessed = csvProcessor.process(CSV_FILEPATH);
     assertEquals(3, linesProcessed);
@@ -54,6 +63,7 @@ public class CsvProcessorTest {
 
   @Test
   public void process_withInvalidCSVLine_shouldProcessValidLines() {
+    when(config.getTimeout()).thenReturn(60000);
     when(httpClient.createCustomer(any())).thenReturn(true);
     int linesProcessed = csvProcessor.process(CSV_INVALID_LINES);
     assertEquals(2, linesProcessed);
@@ -66,6 +76,7 @@ public class CsvProcessorTest {
 
   @Test
   public void process_withValidCsv_shouldReturn1_whenOtherLinesFailToProcess() {
+    when(config.getTimeout()).thenReturn(60000);
     when(httpClient.createCustomer(any())).thenReturn(true).thenReturn(false);
     int linesProcessed = csvProcessor.process(CSV_FILEPATH);
     assertEquals(1, linesProcessed);
